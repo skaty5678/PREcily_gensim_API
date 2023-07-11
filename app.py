@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from nltk.corpus import stopwords
 from gensim.models import Word2Vec
 from sklearn.metrics.pairwise import cosine_similarity
-
+import os
 import nltk
 import ssl
 
@@ -13,8 +13,11 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-nltk.download('punkt')
-nltk.download('stopwords')
+# Set the NLTK data directory inside the virtual environment
+nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
+
+nltk.download('punkt', download_dir='nltk_data')
+nltk.download('stopwords', download_dir='nltk_data')
 
 app = Flask(__name__)
 
