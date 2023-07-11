@@ -2,4 +2,4 @@ Flask
 nltk
 gensim
 scikit-learn
-guvicorn
+gunicorn
